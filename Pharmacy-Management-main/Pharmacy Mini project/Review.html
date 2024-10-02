@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Reviews - Pharmacy Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- For star icons -->
+    <style>
+        body {
+            background-image: url('images/loginbg.jpg');
+            background-position: center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .review {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .review h3 {
+            margin: 0 0 10px;
+        }
+
+        .review p {
+            margin: 0;
+        }
+
+        .stars {
+            color: gold;
+        }
+
+        .filters {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filters button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #000000;
+            color: rgb(235, 176, 28);
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        .filters button:hover {
+            background: #d19f0a;
+            color: #000000;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        h2{
+            color: white;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label{
+            color: #f9f9f9;
+        }
+
+        .form-group select {
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #000000;
+            color: rgb(253, 182, 3);
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #edc913;
+            color: #000000;
+        }
+    </style>
+    <script>
+        let reviews = [
+            { product: "Painkiller", rating: 5, review: "Works great!" },
+            { product: "Antibiotic", rating: 4, review: "Effective, but had mild side effects." },
+            { product: "Cough Syrup", rating: 3, review: "Average. Took a while to work." },
+            { product: "Vitamin C", rating: 4, review: "Good for immunity." },
+            { product: "Antacid", rating: 5, review: "Instant relief!" }
+        ];
+
+        function filterReviews(rating) {
+            const filteredReviews = reviews.filter(review => review.rating >= rating);
+            displayReviews(filteredReviews);
+        }
+
+        function displayReviews(reviews) {
+            const reviewContainer = document.getElementById("reviewContainer");
+            reviewContainer.innerHTML = "";
+
+            reviews.forEach(review => {
+                const reviewElement = `
+                    <div class="review">
+                        <h3>${review.product}</h3>
+                        <div class="stars">${"★".repeat(review.rating)}</div>
+                        <p>${review.review}</p>
+                    </div>
+                `;
+                reviewContainer.innerHTML += reviewElement;
+            });
+        }
+
+        function submitReview() {
+            const product = document.getElementById("product").value;
+            const rating = parseInt(document.getElementById("rating").value);
+            const reviewText = document.getElementById("reviewText").value;
+
+            const newReview = {
+                product,
+                rating,
+                review: reviewText
+            };
+
+            reviews.push(newReview); // Add new review to existing array
+            displayReviews(reviews); // Re-display all reviews
+            alert("Review submitted successfully!");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            displayReviews(reviews); // Display all reviews by default
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Reviews</h1>
+        <div class="filters">
+            <button onclick="filterReviews(3)">3+ Stars</button>
+            <button onclick="filterReviews(4)">4+ Stars</button>
+            <button onclick="filterReviews(5)">5 Stars</button>
+        </div>
+        <div id="reviewContainer">
+            <!-- Reviews will be dynamically displayed here -->
+        </div>
+        <div>
+            <h2>Submit Your Review</h2>
+            <div class="form-group">
+                <label for="product">Product Name:</label>
+                <input type="text" id="product" required />
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <select id="rating" required>
+                    <option value="">Select Rating</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reviewText">Review:</label>
+                <textarea id="reviewText" rows="4" required></textarea>
+            </div>
+            <button class="submit-button" onclick="submitReview()">Submit Review</button>
+        </div>
+    </div>
+</body>
+</html>

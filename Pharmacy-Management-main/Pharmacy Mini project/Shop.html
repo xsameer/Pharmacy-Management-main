@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Now - Online Pharmacy</title>
+    <link rel="stylesheet" type="text/css" href="shop.css"> <!-- CSS for styling -->
+    <script src="shop.js"></script> 
+</head>
+<body>
+    <header>
+        <center><h1>Shop In Our Pharmacy </h1></center>
+        <div>
+            <span>Items :</span>
+            <span id="cartCount">0</span> 
+        </div>
+    </header>
+
+    <main>
+        <div class="shop-container">
+            <div class="medicine-list">
+                <div class="medicine-item">
+                    <img src="images/aspirin.jpg" alt="Aspirin"> 
+                    <h3>Aspirin</h3> 
+                    <p>Price: Rs.5.99</p> 
+                    <button onclick="addToCart('Aspirin', 5.99)">Add to Cart</button> 
+                    <button onclick="buyNow('Aspirin', 5.99)">Buy Now</button> <!-- "Buy Now" button -->
+                </div>
+
+                <div class="medicine-item">
+                    <img src="images/ibu.jpg" alt="Ibuprofen">
+                    <h3>Ibuprofen</h3>
+                    <p>Price: Rs.6.99</p>
+                    <button onclick="addToCart('Ibuprofen', 6.99)">Add to Cart</button>
+                    <button onclick="buyNow('Ibuprofen', 6.99)">Buy Now</button>
+                </div>
+                
+                <div class="medicine-item">
+                    <img src="images/para.jpg" alt="Paracetamol">
+                    <h3>Paracetamol</h3>
+                    <p>Price: Rs.4.99</p>
+                    <button onclick="addToCart('Paracetamol', 4.99)">Add to Cart</button>
+                    <button onclick="buyNow('Paracetamol', 4.99)" >Buy Now</button>
+                </div>
+                
+                <div class="medicine-item">
+                    <img src="images/cough.jpg" alt="Cough Syrup">
+                    <h3>Cough Syrup</h3>
+                    <p>Price: Rs.7.99</p>
+                    <button onclick="addToCart('Cough Syrup', 7.99)">Add to Cart</button>
+                    <button onclick="buyNow('Cough Syrup', 7.99)" >Buy Now</button>
+                </div>
+
+                <div class="medicine-item">
+                    <img src="images/cipro.jpg" alt="Ciprofloxacin">
+                    <h3>Cough Syrup</h3>
+                    <p>Price: Rs.7.99</p>
+                    <button onclick="addToCart('Ciprofloxacin', 7.99)">Add to Cart</button>
+                    <button onclick="buyNow('Ciprofloxacin', 7.99)" >Buy Now</button>
+                </div>
+
+                <div class="medicine-item">
+                    <img src="images/cet.png" alt="Cetirizine">
+                    <h3>Cough Syrup</h3>
+                    <p>Price: Rs.7.99</p>
+                    <button onclick="addToCart('Cetirizine', 7.99)">Add to Cart</button>
+                    <button onclick="buyNow('Cetirizine', 7.99)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Function to add items to the cart
+        function addToCart(medicineName, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingItem = cart.find(item => item.name === medicineName);
+
+            if (existingItem) {
+                existingItem.quantity += 1; // If it exists, increase the quantity
+            } else {
+                cart.push({ name: medicineName, price: price, quantity: 1 }); // Otherwise, add the item
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart)); // Save to local storage
+            updateCartCount(); // Update the cart count
+            alert(`${medicineName} has been added to your cart.`); // Show success message
+        }
+
+        // Function to update the cart count
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cartCount").textContent = totalItems; // Update the cart count display
+        }
+
+        document.addEventListener("DOMContentLoaded", updateCartCount); // Ensure cart count is accurate on page load
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+,<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Pharmacy - Online Pharmacy</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<style>    
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-image: url('images/home bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header {
+    background-color: transparent;
+    color: #000000;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.user-account a {
+    display: inline-block;
+    background-color: #ef0404;
+    color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: #eb0c0c;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: #000000;
+}
+
+.cart-icon {
+    margin-left: 40px;
+    position: relative;
+    background: transparent;
+}
+
+.cart-icon img {
+    width: 60px;
+    background: transparent;
+}
+
+.cart-icon span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #eb0c0c;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px;
+    background-color: transparent;
+}
+
+.hero h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #eb1010;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.product-categories {
+    padding: 50px;
+}
+
+.special-offers {
+    background-color: #ffffff;
+    padding: 50px;
+}
+
+
+.about-us {
+    text-align: center;
+    padding: 50px;
+}
+
+.testimonials {
+    text-align: center;
+    padding: 50px;
+}
+
+.contact-us {
+    background-color: #ffffff;
+    padding: 50px;
+}
+
+footer {
+    background-color: #333;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #ffffff;
+}
+.user-account {
+            position: relative;
+        }
+
+.dropdown-toggle {
+     cursor: pointer;
+}
+
+.dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #0f0e0e;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            top: 30px;
+            left: 0;
+            z-index: 999;
+        }
+
+.dropdown-menu a {
+    display: block;
+    margin-bottom: 5px;
+    color: #e8dfdf;
+    text-decoration: none;
+}
+  
+.user-account .dropdown-toggle {
+        padding: 10px 20px;
+        background-color: #ef0404;
+        color: #ffffff;
+        border: 2px solid #ef0404; /* Add border style here */
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        border: none; /* Remove default border */
+    }
+
+    .user-account .dropdown-toggle:hover {
+        background-color: #d80303;
+    }
+
+h2 {
+    margin-bottom: 10px;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 100px;
+    padding-left: 100px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Admin Details */
+.admin-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.admin-info .icon {
+    flex: 0 0 30px;
+}
+
+.admin-info .icon span {
+    font-size: 20px;
+}
+
+.admin-info .text {
+    margin-left: 10px;
+}
+
+.admin-info p {
+    margin: 0;
+}
+
+/* Contact Form */
+.user-contact-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.error-message {
+    color: red;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+</style>
+    
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="images/logo.jpg" alt="">
+    </div> 
+    <nav>
+        <ul>
+            <h3><li><a href="Home.html">Home</a></li></h3>
+            <h3><li><a href="About.html">About Us</a></li></h3>
+            <h3><li><a href="contact.html">Contact Us</a></li></h3>
+            <h3><li><a href="Feedback.html">Feedback</a></li></h3>
+            <h3><li><a href="Payment.html">Payment</a></li></h3>
+
+        </ul>
+    </nav>
+    <div class="user-account">
+        <div class="dropdown-toggle">Login/Register</div>
+        <div class="dropdown-menu" style="display:block">
+            <a href="reg.html">Login</a>
+            <a href="Login.html">Register</a>
+        </div>
+    </div>   
+    <div class="cart-icon">
+        <a href="Cart.html"><img src="images/cart.jpg" alt=""></a>
+        <span id="cartCount">0</span>
+    </div>
+</header>
+<section class="hero">
+    <h1>Welcome to Your Trusted Online Pharmacy</h1>
+    <div class="featured-products">
+        
+    </div>
+    <a href="Shop.html" class="cta-button">Shop Now</a>
+</section>
+
+<section class="product-categories">
+   
+</section>
+
+<section class="about-us">
+</section>
+
+<section class="testimonials">
+    <h2>What Our Customers Say</h2>
+   
+    <a href="Review.html" class="cta-button">Read More Reviews</a>
+</section>
+
+
+<br><br><footer>
+    <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Shipping Information</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+    </ul>
+  
+</footer>
+<script>
+    $(document).ready(function() {
+        $('.user-account').on('click', '.dropdown-toggle', function() {
+            $(this).next('.dropdown-menu').toggle();
+        });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('.user-account').length) {
+                $('.dropdown-menu').hide();
+            }
+        });
+    });
+
+    function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cartCount").textContent = totalItems; // Update the cart count display
+        }
+</script>
+</body>
+</html>

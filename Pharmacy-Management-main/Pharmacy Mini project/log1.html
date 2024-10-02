@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        .error {
+            color: rgb(0, 0, 0);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-image: url('img2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1{
+            color: #000000;
+            padding-bottom: 80px;
+        }
+
+        form {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px white;
+            width: 400px;
+            margin: 0 auto;
+            padding-bottom: 70px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            size: 5px;
+            color: #ffffff;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #000000;
+            color: #fff;
+            cursor: pointer;
+        }
+         
+        .button-link {
+            display: inline-block;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #bdd64c;
+            color: #0c0c0c;
+            border: 1px solid #c0d616;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button-link:hover {
+            background-color: #000000;
+            border-color: #296169;
+            color:#fff
+        }
+
+        input[type="submit"]:hover {
+            background-color: #296169;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <center><h1>Login To See Details..!!</h1><br>
+
+    <form id="pharmacyForm">
+        <label for="customerName">Customer Id:</label>
+        <input type="text" id="customerName" name="customerName">
+
+        <br>
+
+        <label for="customerAge">Password:</label>
+        <input type="text" id="customerAge" name="customerAge">
+
+        <br>
+
+        <a href="Login.html" class="button-link" id="submitButton">Submit</a></center></center>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#pharmacyForm").submit(function (event) {
+                event.preventDefault();
+
+                $(".error").remove();
+
+                var customerName = $("#customerName").val();
+                if (customerName === "" || !isValidName(customerName)) {
+                    $("#customerName").after("<span class='error'>Please enter the valid name</span>");
+                    return;
+                }
+
+                alert("Form Submitted Successfully!");
+            });
+            
+        });
+    </script>
+
+</body>
+</html>

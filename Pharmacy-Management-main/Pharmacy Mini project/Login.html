@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>   
+    <style>
+         #result {
+            margin-top: 20px;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+        }
+        #result p {
+            margin: 0;
+        }
+        h1.error{
+            color: crimson;
+        }
+        .error {
+            color: rgb(0, 0, 0);
+        }
+        .success {
+            background-color: rgb(255, 255, 255);
+            color: rgb(14, 92, 4);
+        }
+    </style> 
+    <script> 
+            $(document).ready(function () {
+            $("#pharmacyForm").submit(function (event) {
+                event.preventDefault();
+
+                $(".error").remove();
+                $("#validationErrors").text("");
+                var errors = [];
+
+                var customerName = $("#customerName").val();
+                if (customerName === "" || !isValidName(customerName)) {
+                    $("#customerName").after("<h5 class='error'>Please enter the valid name..!</h5>");
+                    return;
+                }
+
+                var customerAge = $("#customerAge").val();
+                if (customerAge === "" || !isValidAge(customerAge)) {
+                    $("#customerAge").after("<h5 class='error'>Please enter the valid age..!</h5>");
+                    return;33
+                }
+
+                var customerEmail = $("#customerEmail").val();
+                if (customerEmail === "" || !isValidEmail(customerEmail)) {
+                    $("#customerEmail").after("<h5 class='error'>Please enter a valid email address..!</h5>");
+                    return;
+                }
+
+                var customerPhone = $("#customerPhone").val();
+                if (customerPhone === "" || !isValidPhoneNumber(customerPhone)) {
+                    $("#customerPhone").after("<h5 class='error'>Please enter a valid phone number..!</h5>");
+                    return;
+                }
+
+                var drugName = $("#drugName").val();
+                if (drugName === "") {
+                    $("#drugName").after("<h5 class='error'>Please enter the drug name..!</h5>");
+                    return;
+                }
+
+                var quantity = $("#quantity").val();
+                if (quantity === "" || isNaN(quantity) || quantity <= 0) {
+                    $("#quantity").after("<h5 class='error'>Please enter a valid quantity..!</h5>");
+                    return;
+                }
+
+                var expirationDate = $("#expirationDate").val();
+                if (expirationDate === "" || !isValidExpirationDate(expirationDate)) {
+                    $("#expirationDate").after("<h4 class='error'>Tablet Is Expired..!!!</h4>");
+                    return;
+                }
+
+                if (errors.length === 0) {
+                    $("#result").html("<h1 class='success'>Form submitted successfully!</h1>");
+                } else {
+                    var errorMessages = "<h1 class='error'>Please fix the following errors:</h1><ul>";
+                    for (var i = 0; i < errors.length; i++) {
+                        errorMessages += "<li>" + errors[i] + "</li>";
+                    }
+                    errorMessages += "</ul>";
+                    $("#result").html(errorMessages);
+                }    
+            });
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function isValidAge(age) {
+                var ageRegex = /^(1[89]|[2-9]\d)$/;
+                return ageRegex.test(age);
+            }
+
+            function isValidPhoneNumber(phone) {
+                var phoneRegex = /^\d{10}$/;
+                return phoneRegex.test(phone);
+            }
+
+            function isValidName(name) {
+                var nameRegex = /^[a-zA-Z\s'-]+$/;
+                return nameRegex.test(name);
+            }
+
+            function isValidExpirationDate(expirationDate) {
+                if (!expirationDate) {
+                    return false;
+                }
+                var enteredDate = new Date(expirationDate);
+                var currentDate = new Date();
+                return enteredDate >= currentDate;
+            }
+        });    
+    </script>
+</head>    
+    <style>
+        .error {
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>  
+<body>
+
+    <center><h1>Pharmacy Management System</h1><br>
+    <form id="pharmacyForm">
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" name="customerName">
+
+        <br>
+
+        <label for="customerAge">Age:</label>
+        <input type="text" id="customerAge" name="customerAge">
+
+        <br>
+
+        <label for="customerEmail">Email:</label>
+        <input type="email" id="customerEmail" name="customerEmail">
+
+        <br>
+
+        <label for="customerPhone">Phone Number:</label>
+        <input type="tel" id="customerPhone" name="customerPhone">
+
+        <br>
+
+        <label for="drugName">Drug Name:</label>
+        <input type="text" id="drugName" name="drugName">
+
+        <br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity">
+
+        <br>
+
+        <label for="expirationDate">Expiration Date:</label>
+        <input type="date" id="expirationDate" name="expirationDate">
+
+        <br>
+
+        <input type="submit" value="Submit"></center>
+    </form>
+    <div id="result"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script1.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Details</title>
+</head>
+<body>
+    <h1>Form Details</h1>
+    <div id="formDetails">
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const formDetailsDiv = document.getElementById('formDetails');
+            const customerName = urlParams.get('customerName');
+            const customerAge = urlParams.get('customerAge');
+            const customerEmail = urlParams.get('customerEmail');
+            const customerPhone = urlParams.get('customerPhone');
+            const drugName = urlParams.get('drugName');
+            const quantity = urlParams.get('quantity');
+            const expirationDate = urlParams.get('expirationDate');
+
+            formDetailsDiv.innerHTML = `
+                <p><strong>Customer Name:</strong> ${customerName}</p>
+                <p><strong>Age:</strong> ${customerAge}</p>
+                <p><strong>Email:</strong> ${customerEmail}</p>
+                <p><strong>Phone:</strong> ${customerPhone}</p>
+                <p><strong>Drug Name:</strong> ${drugName}</p>
+                <p><strong>Quantity:</strong> ${quantity}</p>
+                <p><strong>Expiration Date:</strong> ${expirationDate}</p>
+            `;
+        });
+    </script>
+</body>
+</html>

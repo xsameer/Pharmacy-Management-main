@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Feedback Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('images/febg.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 7px;
+            color: #fffcfc;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .form-wrapper {
+            background-color: rgb(70 66 63);
+            padding: 51px;
+            border-radius: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%
+        }
+
+        label {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -5px;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("FormController", function ($scope) {
+            $scope.feedback = {
+                name: "",
+                email: "",
+                feedbackType: "positive",
+                rating: 3,
+                message: ""
+            };
+
+            $scope.submitForm = function () {
+                if ($scope.feedbackForm.$valid) {
+                    alert("Feedback submitted!\n" + JSON.stringify($scope.feedback, null, 2));
+                } else {
+                    alert("Form is invalid. Please correct the errors and try again.");
+                }
+            };
+        });
+    </script>
+
+    <div class="form-container" ng-controller="FormController">
+        <div class="form-wrapper">
+            <h2>Feedback Form</h2>
+            <form name="feedbackForm" ng-submit="submitForm()">
+                <div>
+                    <label for="name">Name:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        ng-model="feedback.name"
+                        required
+                        minlength="3"
+                    /><br>
+                    <span class="error-message" ng-show="feedbackForm.name.$invalid && feedbackForm.name.$touched">
+                        Name is required and must be at least 3 characters long.
+                    </span>
+                </div>
+
+                <div>
+                    <label for="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        ng-model="feedback.email"
+                        required
+                    /><br>
+                    <span class="error-message" ng-show="feedbackForm.email.$invalid && feedbackForm.email.$touched">
+                        Valid email is required.
+                    </span>
+                </div>
+
+                <div>
+                    <label for="feedbackType">Feedback Type:</label>
+                    <select
+                        id="feedbackType"
+                        name="feedbackType"
+                        ng-model="feedback.feedbackType"
+                    >
+                        <option value="positive">Positive</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="negative">Negative</option>
+                    </select><br>
+                </div>
+
+                <div>
+                    <label for="rating">Rating (1 to 5):</label>
+                    <input
+                        type="number"
+                        id="rating"
+                        name="rating"
+                        ng-model="feedback.rating"
+                        min="1"
+                        max="5"
+                        required
+                    /><br>
+                    <span class="error-message" ng-show="feedbackForm.rating.$invalid && feedbackForm.rating.$touched">
+                        Rating must be between 1 and 5.
+                    </span>
+                </div>
+
+                <div>
+                    <label for="message">Feedback Message:</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        ng-model="feedback.message"
+                        required
+                        minlength="10"
+                    ></textarea><br>
+                    <span class="error-message" ng-show="feedbackForm.message.$invalid && feedbackForm.message.$touched">
+                        Feedback message is required and must be at least 10 characters long.
+                    </span>
+                </div>
+
+                <div>
+                    <button type="submit" ng-disabled="feedbackForm.$invalid">
+                        Submit Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

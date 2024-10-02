@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Pharmacy - Cart</title>
+    <style>
+        /* Base styling for the cart page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('images/img\ 1.jpg');
+    background-size: cover;
+    background-position: center; /* Light background color */
+}
+
+main {
+    padding: 20px; /* Padding around the main content */
+}
+
+h1 {
+    text-align: center; /* Center the heading */
+    color: #946666; /* Dark text color */
+}
+
+/* Cart items */
+.cart-item {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #dee2e6; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding inside the item */
+    margin-bottom: 10px; /* Spacing between items */
+    display: flex; /* Flex layout for alignment */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Align items vertically */
+}
+
+.cart-item p {
+    margin: 0; /* No margin for paragraphs */
+    color: #333; /* Dark text color */
+}
+
+/* Buttons */
+.cart-item button,
+.cart-actions button {
+    background-color: #007bff; /* Primary blue color */
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding around the button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.cart-item button:hover,
+.cart-actions button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.cart-actions {
+    text-align: center; /* Center the action buttons */
+    margin-top: 20px; /* Space above the action buttons */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column; /* Stack elements on smaller screens */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .cart-actions {
+        text-align: left; /* Align action buttons to the left */
+    }
+}
+
+
+@media (max-width: 480px) {
+    .cart-actions {
+        text-align: center; /* Re-center action buttons for smaller screens */
+    }
+}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="cart.js"></script>
+    <script src="shop.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <div id="cartCountDisplay">
+            Cart Items: <span id="cartCount">0</span>
+        </div>
+    </header>
+
+    <main>
+        <div id="cartItems">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+        
+        <div class="cart-actions">
+            <button onclick="clearCart()">Clear Cart</button>
+            <button onclick="proceedToCheckout()" style="color:white; background-color:rgb(8, 193, 14)">Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || []; // Retrieve the cart
+            let cartCount = cart.reduce((sum, item) => sum + item.quantity, 0); // Calculate cart count
+            $("#cartCount").text(cartCount); // Update the cart count display
+
+            let cartItemsDiv = $("#cartItems");
+            cartItemsDiv.empty(); // Clear existing content
+
+            if (cart.length === 0) {
+                cartItemsDiv.append("<p>Your cart is empty.</p>");
+            } else {
+                cart.forEach((item) => {
+                    const totalItemPrice = (item.price * item.quantity).toFixed(2);
+                    cartItemsDiv.append(`
+                        <div class="cart-item">
+                            <p>${item.name} - Quantity: ${item.quantity} - Total Price: $${totalItemPrice}</p>
+                            <button onclick="removeFromCart('${item.name}')" style="color:white; background-color:red">Remove</button>
+                        </div>
+                    `);
+                });
+            }
+        }
+
+        function removeFromCart(medicineName) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let itemToRemove = cart.find(item => item.name === medicineName);
+
+            if (itemToRemove) {
+                if (itemToRemove.quantity > 1) {
+                    itemToRemove.quantity--; // Reduce quantity by one
+                } else {
+                    cart = cart.filter(item => item.name !== medicineName); // Remove the item if quantity is one
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart
+                loadCart(); 
+            }
+        }
+
+        function clearCart() {
+            localStorage.removeItem("cart"); // Clear the cart
+            loadCart(); 
+        }
+
+        function proceedToCheckout() {
+            alert("Proceeding to checkout...");
+            window.location.href = "Payment.html"; 
+        }
+
+        $(document).ready(() => {
+            loadCart(); 
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Pharmacy - Payment</title>
+    <style>
+body {
+    font-family: 'Roboto', sans-serif; /* Modern, easy-to-read font */
+    background-image: url('images/pay.jpg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px; /* Wider container for a modern look */
+    margin: 0 auto; /* Center the container */
+    padding: 30px; /* Adequate padding */
+    background: #ffffff; /* White background for contrast */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h1 {
+    text-align: center; /* Centered heading */
+    color: #f05e0a; /* Dark text color */
+    font-weight: 700; /* Bold font weight */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Form fields */
+.form-group {
+    margin-bottom: 25px; /* Increased space between form groups */
+}
+
+.form-group label {
+    display: block; /* Block-level label */
+    font-weight: 600; /* Semi-bold font */
+    color: #ffffff;
+    margin-bottom: 8px; /* Space below the label */
+}
+
+.form-group input,
+.form-group select {
+    width: 50%; /* Full width */
+    padding: 12px; /* More padding for a premium feel */
+    border: 1px solid #bbb; /* Slightly darker border */
+    border-radius: 6px; /* Slightly larger rounded corners */
+    font-size: 16px; /* Larger font size */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow */
+}
+
+.form-group input.error,
+.form-group select.error {
+    border-color: #dc3545; /* Red border for errors */
+}
+
+.error-message {
+    color: #dc3545; /* Red text for error messages */
+    font-size: 14px; /* Slightly smaller font size for errors */
+}
+
+/* Payment buttons */
+.payment-buttons {
+    text-align: center; /* Center the buttons */
+    margin-top: 30px; /* Space above the buttons */
+}
+
+button {
+    background-color: #28a745; /* Green for success */
+    color: #000000; /* White text */
+    border: none; /* No border */
+    padding: 12px 25px; /* Padding for a premium feel */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Larger font size */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #ffffff; /* Darker green on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Reduced padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-buttons {
+        text-align: left; /* Align buttons to the left on mobile */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <main>
+       <center><h1>Payment</h1>
+        <p>Thank you for purchasing from our pharmacy. Please enter your payment details below.</p>
+
+        <form>
+            <div class="form-group">
+                <label for="cardNumber">Credit Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="1234-5678-9012-3456" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" required>
+            </div>
+
+            <button type="submit">Pay Now</button>
+        </form></center>
+    </main>
+</body>
+</html

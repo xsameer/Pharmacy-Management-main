@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-image: url('home bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header {
+    background-color: transparent;
+    color: #000000;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.user-account a {
+    display: inline-block;
+    background-color: #ef0404;
+    color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: #eb0c0c;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: #000000;
+}
+
+.cart-icon {
+    margin-left: 40px;
+    position: relative;
+    background: transparent;
+}
+
+.cart-icon img {
+    width: 60px;
+    background: transparent;
+}
+
+.cart-icon span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #eb0c0c;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px;
+    background-color: transparent;
+}
+
+.hero h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #eb1010;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.product-categories {
+    padding: 50px;
+}
+
+.special-offers {
+    background-color: #ffffff;
+    padding: 50px;
+}
+
+
+.about-us {
+    text-align: center;
+    padding: 50px;
+}
+
+.testimonials {
+    text-align: center;
+    padding: 50px;
+}
+
+.contact-us {
+    background-color: #ffffff;
+    padding: 50px;
+}
+
+footer {
+    background-color: #333;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #ffffff;
+}
+        .user-account {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            top: 30px;
+            left: 0;
+            z-index: 999;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Placeholder styles for other sections */
+        section {
+            padding: 20px;
+            background-color: #f0f0f0;
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop by Category</a></li>
+            <li><a href="#">Prescription Refill</a></li>
+            <li><a href="#">Special Offers</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="user-account">
+        <div class="dropdown-toggle">Login/Register</div>
+        <div class="dropdown-menu">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </div>
+    <div class="cart-icon">
+        <img src="cart.jpg" alt="">
+        <span>0</span> 
+    </div>
+</header>
+
+<section class="hero">
+    <h2>Hero Section</h2>
+    <p>This is the hero section of your website.</p>
+</section>
+
+<section class="product-categories">
+    <h2>Product Categories</h2>
+    <p>Here you can display various product categories.</p>
+</section>
+
+<section class="about-us">
+    <h2>About Us</h2>
+    <p>Information about your company or organization.</p>
+</section>
+
+<section class="testimonials">
+    <h2>Testimonials</h2>
+    <p>Feedback from satisfied customers.</p>
+</section>
+
+<footer>
+    <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Shipping Information</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+    </ul>
+</footer>
+
+<script>
+    $(document).ready(function() {
+        $('.user-account').on('click', '.dropdown-toggle', function() {
+            $(this).next('.dropdown-menu').toggle();
+        });
+
+        // Close dropdown when clicked outside
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('.user-account').length) {
+                $('.dropdown-menu').hide();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+{
+    id: 5,
+    name: "Ciprofloxacin",
+    price: 9.99,
+    description: "Used to treat bacterial infections.",
+    image: "images/cipro.jpg",
+    activeIngredient: "Amoxicillin",
+    manufacturer: "Pfizer"
+},
+{
+    id: 6,
+    name: "Cetirizine",
+    price: 8.99,
+    description: "Relieves allergy symptoms.",
+    image: "images/cet.png",
+    activeIngredient: "Diphenhydramine",
+    manufacturer: "Benadryl"
+},
